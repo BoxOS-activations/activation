@@ -1,2 +1,2 @@
 # activation
-Contains the activation fkeys for BoxOS
+Contains the activation keys for BoxOS
