@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<html>
+  <head>
+    <title>BoxOS activation</title>
+    <link rel="shortcut icon" type="image/x-icon" href="Box.ico" />
+  </head>
+
+  <style>
+    .activation_code_text {
+        padding: 10px;
+        text-align: center;
+        background: #3858fc;
+        color: white;
+        font-size: 30px;
+        border-radius: 25px;
+        position: fixed;
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: Arial,bold;
+    }
+
+    .header {
+        padding: 60px;
+        text-align: center;
+        background: #3858fc;
+        color: white;
+        font-size: 30px;
+    }
+
+    body {
+        font-family: Arial;
+        margin: 0;
+    }      
+  </style>
+
+  <html>
+    <div class="header">
+      <h1>Activate BoxOS!</h1>
+    </div>
+
+    <div class="activation_code_text">
+        <p><span type="text" id="act-key"></span><p>
+        <a href="djfiaosjfiasjfijasiofjashfashfashfsahfuohasfhdsfjdsngdshgiodshigjsdfjksdopkjfpodsjjsdigdksjfjf9pwqiepuadasjdksladnklsakdosajd.html"></a>
+        <script>
+          $(function() {
+              
+              function setCookie(name, value, days) {
+                  if (days) {
+                      var date = new Date();
+                      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                      var expires = "; expires=" + date.toGMTString();
+                  }
+                  else var expires = "";
+
+                  document.cookie = name + "=" + value + expires + "; path=/";
+              }
+
+              function getCookie(name) {
+                  var nameEQ = name + "=";
+                  var ca = document.cookie.split(';');
+                  for (var i = 0; i < ca.length; i++) {
+                      var c = ca[i];
+                      while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+                  }
+                  return null;
+              }
+
+              var myCookie = getCookie("MyCookie");
+              if (myCookie == null) {
+                jQuery(function($) {
+                  $.get("activation_codes.txt", function(wholeTextFile) {
+                    var lines = wholeTextFile.split(/\n/),
+                      randomIndex = Math.floor(Math.random() * lines.length),
+                      randomLine = lines[randomIndex];
+                    $("#ajax").html(randomLine.replace("/(?:\r\n|\r|\n)/g", '<br>'))
+                    document.getElementById('act-key').innerHTML = randomLine;
+                    setCookie("MyCookie",randomLine,2100)
+                  })
+                }) 
+                
+
+              }
+              else {
+                document.getElementById('act-key').innerHTML = myCookie;
+              }
+          });
+        </script>
+    </div>
+  </html>
+
+
+</html>

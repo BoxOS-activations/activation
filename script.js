@@ -1,0 +1,3 @@
+/*
+Script.js documentation is not really provided with the file
+*/
